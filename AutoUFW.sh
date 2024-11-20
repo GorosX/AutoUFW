@@ -55,12 +55,24 @@ sudo ufw limit to any port 80 proto tcp  # HTTP
 sudo ufw limit to any port 443 proto tcp # HTTPS
 
 # 8. Control granular de ICMP
-echo "Aplicando control granular de ICMP..."
-sudo ufw allow proto icmp to any type 8   # Permitir Echo Request (ping)
-sudo ufw deny proto icmp to any type 0    # Bloquear Echo Reply
-sudo ufw deny proto icmp to any type 3    # Bloquear Destination Unreachable
-sudo ufw deny proto icmp to any type 5    # Bloquear Redirect
-sudo ufw deny proto icmp to any type 11   # Bloquear Time Exceeded
+echo "Aplicando control granular de ICMP con iptables..."
+
+# Permitir únicamente ICMP de tipo 8 (Echo Request - ping)
+sudo iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
+
+# Bloquear ICMP de tipo 0 (Echo Reply)
+sudo iptables -A INPUT -p icmp --icmp-type 0 -j DROP
+
+# Bloquear ICMP de tipo 3 (Destination Unreachable)
+sudo iptables -A INPUT -p icmp --icmp-type 3 -j DROP
+
+# Bloquear ICMP de tipo 5 (Redirect)
+sudo iptables -A INPUT -p icmp --icmp-type 5 -j DROP
+
+# Bloquear ICMP de tipo 11 (Time Exceeded)
+sudo iptables -A INPUT -p icmp --icmp-type 11 -j DROP
+
+echo "Reglas de ICMP aplicadas correctamente."
 
 # Habilitar UFW
 echo "Habilitando ufw..."
