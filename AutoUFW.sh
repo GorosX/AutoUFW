@@ -34,7 +34,7 @@ sudo ufw allow from 172.16.2.149 to any port 50505:50509 proto udp  # Rango UDP
 # 4. Abrir puertos para la IP 172.16.2.201
 echo "Configurando reglas para la IP 172.16.2.201..."
 sudo ufw allow from 172.16.2.201 to any port 4444 proto udp         # Puerto UDP
-sudo ufw allow from 172.16.2.201 to any port 139,445                # SMB (Precaución)
+sudo ufw allow from 172.16.2.201 to any port 139,445 proto tcp      # SMB (Precaución)
 sudo ufw allow from 172.16.2.201 to any port 3389                   # RDP (Precaución)
 
 # 5. Habilitar acceso a servicios de correo electrónico
