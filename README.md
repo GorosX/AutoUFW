@@ -1,21 +1,12 @@
-Instrucciones:
+# AutoUFW
 
-1:
+## Instrucciones
 
-sudo apt install git
+Sigue estos pasos para instalar y ejecutar AutoUFW:
 
-2:
-
+```bash
+sudo apt install git -y
 git clone https://github.com/GorosX/AutoUFW.git
-
-3:
-
 cd AutoUFW
-
-4:
-
 chmod +x AutoUFW.sh
-
-5:
-
 ./AutoUFW
