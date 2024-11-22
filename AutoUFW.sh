@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Comprobar que el script se ejecuta como root
+# Comprobación de que el script se ejecuta como root
 if [ "$(id -u)" -ne 0 ]; then
     echo "Este script debe ejecutarse como root."
     exit 1
