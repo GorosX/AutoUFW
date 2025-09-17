@@ -2,7 +2,7 @@
 
 ## Instrucciones
 
-Sigue estos pasos para instalar y ejecutar AutoUFW:
+Sigue estos pasos para instalar, configurar y ejecutar AutoUFW:
 
 ```bash
 sudo apt install git -y
