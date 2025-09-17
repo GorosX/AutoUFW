@@ -47,33 +47,6 @@ sudo ufw allow to any port 110 proto tcp # POP3
 echo "Permitiendo conexiones a MySQL/MariaDB desde la subred 172.16.0.0/22..."
 sudo ufw allow from 172.16.0.0/22 to any port 3306 proto tcp
 
-# 7. Limitar la tasa de conexiones
-echo "Aplicando limitaciones de tasa para conexiones..."
-sudo ufw limit ssh                       # SSH
-sudo ufw limit to any port 25 proto tcp  # SMTP
-sudo ufw limit to any port 80 proto tcp  # HTTP
-sudo ufw limit to any port 443 proto tcp # HTTPS
-
-# 8. Control granular de ICMP
-echo "Aplicando control granular de ICMP con iptables..."
-
-# Permitir únicamente ICMP de tipo 8 (Echo Request - ping)
-sudo iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
-
-# Bloquear ICMP de tipo 0 (Echo Reply)
-sudo iptables -A INPUT -p icmp --icmp-type 0 -j DROP
-
-# Bloquear ICMP de tipo 3 (Destination Unreachable)
-sudo iptables -A INPUT -p icmp --icmp-type 3 -j DROP
-
-# Bloquear ICMP de tipo 5 (Redirect)
-sudo iptables -A INPUT -p icmp --icmp-type 5 -j DROP
-
-# Bloquear ICMP de tipo 11 (Time Exceeded)
-sudo iptables -A INPUT -p icmp --icmp-type 11 -j DROP
-
-echo "Reglas de ICMP aplicadas correctamente."
-
 # Habilitar UFW
 echo "Habilitando ufw..."
 sudo ufw --force enable
